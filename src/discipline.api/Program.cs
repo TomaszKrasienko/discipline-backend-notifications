@@ -11,9 +11,10 @@ builder.Services.AddCore();
 var app = builder.Build();
 app.UseCore();
 app.MapHub<NotificationHub>("/discipline-notifications-hub");
-app.MapPost("/", (IHubContext<NotificationHub> context) =>
+app.MapPost("/send-notification",async (IHubContext<NotificationHub> context) =>
 {
-    context.Clients.All.SendAsync("user-notifications", "test");
+    
+    await context.Clients.All.SendAsync("user-notifications", "test");
 });
 app.UseHttpsRedirection();
 app.Run();

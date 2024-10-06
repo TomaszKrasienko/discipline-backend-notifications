@@ -1,3 +1,5 @@
+using discipline.core.Communication.SignalR.Registry;
+using discipline.core.Communication.SignalR.Types;
 using discipline.core.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -23,7 +25,7 @@ internal static class Extensions
             var registry = new RoutesRegistry();
             foreach (var option in signalROptions)    
             {
-                if (!Enum.TryParse(option.Key, out BroadcastingType type))
+                if (!Enum.TryParse(option.Key, out NotificationType type))
                 {
                     throw new ArgumentException();
                 }
