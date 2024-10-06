@@ -13,7 +13,6 @@ app.UseCore();
 app.MapHub<NotificationHub>("/discipline-notifications-hub");
 app.MapPost("/send-notification",async (IHubContext<NotificationHub> context) =>
 {
-    
     await context.Clients.All.SendAsync("user-notifications", "test");
 });
 app.UseHttpsRedirection();
