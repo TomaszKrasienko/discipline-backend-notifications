@@ -9,11 +9,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCore();
 
 var app = builder.Build();
-app.UseCors("test");
+app.UseCore();
+app.MapHub<NotificationHub>("/discipline-notifications-hub");
 app.MapPost("/", (IHubContext<NotificationHub> context) =>
 {
     context.Clients.All.SendAsync("user-notifications", "test");
 });
-app.MapHub<NotificationHub>("/discipline-notifications-hub");
 app.UseHttpsRedirection();
 app.Run();
