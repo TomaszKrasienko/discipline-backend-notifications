@@ -1,17 +1,22 @@
 using discipline.core.Communication.SignalR;
 using discipline.core.Communication.SignalR.Registry;
+using discipline.core.Serializer;
 
 namespace discipline.core.Communication;
 
 internal sealed class BroadcastingSystemNotificationWrapper(
     IHubRegistry registry,
-    IHubService hubService) : INotificationWrapper
+    IHubService hubService,
+    ISerializer serializer) : INotificationWrapper
 {
-    public Task Send(NotificationType type)
+    private const NotificationType Type = NotificationType.System;
+    
+    public async Task Send(object message)
     {
-        throw new NotImplementedException();
+        var serializedMessage = serializer.ToJson(message);
+        await hubService.PublishForAll(Type, serializedMessage);
     }
 
     public bool CanByApplied(NotificationType type)
-        => type == NotificationType.System && registry.IsKeyExists(type);
+        => type == Type && registry.IsKeyExists(type);
 }

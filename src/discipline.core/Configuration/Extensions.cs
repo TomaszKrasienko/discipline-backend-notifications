@@ -1,4 +1,5 @@
 using discipline.core.Communication.SignalR.Configuration;
+using discipline.core.Serializer.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -12,6 +13,7 @@ public static class Extensions
     public static IServiceCollection AddCore(this IServiceCollection services, IConfiguration configuration)
         => services
             .AddBroadcasting(configuration)
+            .AddSerializer()
             .AddDisciplineCors();
 
     private static IServiceCollection AddDisciplineCors(this IServiceCollection services)

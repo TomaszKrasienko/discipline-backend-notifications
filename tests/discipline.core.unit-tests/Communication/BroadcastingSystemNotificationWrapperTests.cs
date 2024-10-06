@@ -1,6 +1,7 @@
 using discipline.core.Communication;
 using discipline.core.Communication.SignalR;
 using discipline.core.Communication.SignalR.Registry;
+using discipline.core.Serializer;
 using NSubstitute;
 using Shouldly;
 using Xunit;
@@ -9,6 +10,25 @@ namespace discipline.core.unit_tests.Communication;
 
 public sealed class BroadcastingSystemNotificationWrapperTests
 {
+    [Fact]
+    public async Task Send_GivenObject_ShouldSendSerializedMessageByHubService()
+    {
+        //arrange
+        var message = new { Test = "test" };
+        var serializedMessage = "test_serialized_message";
+        _serializer
+            .ToJson(message)
+            .Returns(serializedMessage);
+
+        //act
+        await _notificationWrapper.Send(message);
+        
+        //assert
+        await _hubService
+            .Received(1)
+            .PublishForAll(NotificationType.System, serializedMessage);
+    }
+    
     [Theory]
     [InlineData(true, NotificationType.Chat)]
     [InlineData(false, NotificationType.Chat)]
@@ -59,14 +79,16 @@ public sealed class BroadcastingSystemNotificationWrapperTests
     #region arrange
     private readonly IHubRegistry _hubRegistry;
     private readonly IHubService _hubService;
+    private readonly ISerializer _serializer;
     private readonly INotificationWrapper _notificationWrapper;
 
     public BroadcastingSystemNotificationWrapperTests()
     {
         _hubRegistry = Substitute.For<IHubRegistry>();
         _hubService = Substitute.For<IHubService>();
+        _serializer = Substitute.For<ISerializer>();
         _notificationWrapper = new BroadcastingSystemNotificationWrapper(
-            _hubRegistry, _hubService);
+            _hubRegistry, _hubService, _serializer);
     }
     #endregion
 }
