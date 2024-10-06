@@ -2,7 +2,7 @@ using discipline.core.Communication.SignalR.Types;
 
 namespace discipline.core.Communication.SignalR.Registry;
 
-internal sealed class RoutesRegistry : IRoutesRegistry
+internal sealed class HubRegistry : IHubRegistry
 {
     private readonly Dictionary<NotificationType, BroadcastingRoute> _routes = new ();
 

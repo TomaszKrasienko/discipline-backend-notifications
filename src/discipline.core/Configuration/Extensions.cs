@@ -9,9 +9,9 @@ public static class Extensions
 {
     private const string CorsName = "discipline-notifications-cors";
     
-    public static IServiceCollection AddCore(this IServiceCollection services)
+    public static IServiceCollection AddCore(this IServiceCollection services, IConfiguration configuration)
         => services
-            .AddBroadcasting()
+            .AddBroadcasting(configuration)
             .AddDisciplineCors();
 
     private static IServiceCollection AddDisciplineCors(this IServiceCollection services)

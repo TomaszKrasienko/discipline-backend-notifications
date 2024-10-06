@@ -12,17 +12,19 @@ internal static class Extensions
 {
     private const string SectionName = "SignalR";
     
-    internal static IServiceCollection AddBroadcasting(this IServiceCollection services)
+    internal static IServiceCollection AddBroadcasting(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddSignalR();
+        services.AddRegistry(configuration);
+        services.AddScoped<IHubService, HubService>();
         return services;
     }
 
     private static IServiceCollection AddRegistry(this IServiceCollection services, IConfiguration configuration)
-        => services.AddSingleton<IRoutesRegistry>(sp =>
+        => services.AddSingleton<IHubRegistry>(sp =>
         {
             var signalROptions = configuration.GetOptions<Dictionary<string, SignalROptions>>(SectionName);
-            var registry = new RoutesRegistry();
+            var registry = new HubRegistry();
             foreach (var option in signalROptions)    
             {
                 if (!Enum.TryParse(option.Key, out NotificationType type))
