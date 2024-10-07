@@ -8,7 +8,8 @@ public sealed class NotificationHub
 {
     public override Task OnConnectedAsync()
     {
-        logger.LogInformation($"User connected");
+        var user = Context?.User?.Identity?.Name;
+        logger.LogInformation($"User {user} connected");
         return base.OnConnectedAsync();
     }
 

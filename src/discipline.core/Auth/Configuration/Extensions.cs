@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Cryptography;
 using discipline.core.Communication.SignalR.Configuration;
 using discipline.core.Configuration;
@@ -43,14 +44,17 @@ internal static class Extensions
                 {
                     OnMessageReceived = context =>
                     {
-                        var accessToken = context.Request.Query["access_token"];
                         var path = context.HttpContext.Request.Path;
+                        var headers = context.Request.Headers.TryGetValue("Authorization", out var accessToken);
                         var signalROptions = configuration.GetOptions<Dictionary<string, SignalROptions>>(Communication.SignalR.Configuration.Extensions.SectionName);
-                        
-                        if (!string.IsNullOrEmpty(accessToken) && IsValidPath())
+                        JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+                        var result = handler.ValidateToken(accessToken.First(), validationParameters, out SecurityToken validatedToken);
+                        var token = handler.ReadJwtToken(accessToken.First());
+                        if (!string.IsNullOrEmpty(accessToken) && IsValidPath() && (result?.Identity?.IsAuthenticated ?? false))
                         {
-                            context.Token = accessToken;
+                            context.Token = accessToken.First();
                         }
+                        
                         return Task.CompletedTask;
 
                         bool IsValidPath() => 
