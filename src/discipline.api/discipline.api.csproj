@@ -15,4 +15,10 @@
       <ProjectReference Include="..\discipline.core\discipline.core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="certs\public.pem">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

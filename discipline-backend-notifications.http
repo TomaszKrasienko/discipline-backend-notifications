@@ -1,4 +1,4 @@
 @url = http://localhost:5227
 
 ###
-POST {{url}}
+POST {{url}}/send-notification

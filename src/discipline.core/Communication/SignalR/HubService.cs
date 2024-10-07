@@ -13,6 +13,7 @@ internal sealed class HubService(
     {
         logger.LogInformation("Sending notification with type: {0} for all", type);
         var route = registry.Get(type);
+        
         await notificationsContext.Clients.All.SendAsync(route.Method, message);
     }
 }

@@ -1,3 +1,4 @@
+using discipline.core.Communication;
 using discipline.core.Communication.SignalR;
 using discipline.core.Configuration;
 using Microsoft.AspNetCore.SignalR;
@@ -10,10 +11,9 @@ builder.Services.AddCore(builder.Configuration);
 
 var app = builder.Build();
 app.UseCore();
-app.MapHub<NotificationHub>("/discipline-notifications-hub");
-app.MapPost("/send-notification",async (IHubContext<NotificationHub> context) =>
+app.MapPost("/send-notification",async (INotificationWrapper wrapper) =>
 {
-    await context.Clients.All.SendAsync("user-notifications", "test");
+    await wrapper.Send(new { Test = "Test" });
 });
 app.UseHttpsRedirection();
 app.Run();

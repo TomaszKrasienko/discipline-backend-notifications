@@ -1,3 +1,4 @@
+using discipline.core.Auth.Configuration;
 using discipline.core.Communication.Configuration;
 using discipline.core.Communication.SignalR.Configuration;
 using discipline.core.Serializer.Configuration;
@@ -14,6 +15,7 @@ public static class Extensions
     public static IServiceCollection AddCore(this IServiceCollection services, IConfiguration configuration)
         => services
             .AddCommunication(configuration)
+            .AddAuth(configuration)
             .AddSerializer()
             .AddDisciplineCors();
 
@@ -36,7 +38,9 @@ public static class Extensions
 
     public static WebApplication UseCore(this WebApplication app)
         => app
-            .UseDisciplineCors();
+            .UseDisciplineCors()
+            .UseAuth()
+            .UseBroadcasting();
     
     private static WebApplication UseDisciplineCors(this WebApplication app)
     {

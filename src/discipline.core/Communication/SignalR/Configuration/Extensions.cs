@@ -10,7 +10,7 @@ namespace discipline.core.Communication.SignalR.Configuration;
 
 internal static class Extensions
 {
-    private const string SectionName = "SignalR";
+    internal const string SectionName = "SignalR";
     
     internal static IServiceCollection AddBroadcasting(this IServiceCollection services, IConfiguration configuration)
     {
@@ -43,6 +43,11 @@ internal static class Extensions
 
     internal static WebApplication UseBroadcasting(this WebApplication app)
     {
+        var options = app.Configuration.GetOptions<Dictionary<string, SignalROptions>>(SectionName);
+        if (options.TryGetValue(NotificationType.System.ToString(), out var notificationsOptions))
+        {
+            app.MapHub<NotificationHub>(notificationsOptions.Route);
+        }
         return app;
     }
 }
