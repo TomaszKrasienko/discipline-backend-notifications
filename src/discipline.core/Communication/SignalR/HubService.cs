@@ -16,4 +16,11 @@ internal sealed class HubService(
         
         await notificationsContext.Clients.All.SendAsync(route.Method, message);
     }
+
+    public async Task PublishForUser(NotificationType type, Guid userId, string message)
+    {
+        logger.LogInformation("Sending notification with type: {0} for user: {1}", type, userId);
+        var route = registry.Get(type);
+        await notificationsContext.Clients.User(userId.ToString()).SendAsync(route.Method, message);
+    }
 }
