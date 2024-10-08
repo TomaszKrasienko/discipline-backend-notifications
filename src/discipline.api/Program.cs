@@ -13,7 +13,7 @@ var app = builder.Build();
 app.UseCore();
 app.MapPost("/send-notification",async (INotificationWrapper wrapper) =>
 {
-    await wrapper.Send(new { Test = "Test" });
+    await wrapper.SendForAll(new { Test = "Test" });
 });
 app.UseHttpsRedirection();
 app.Run();

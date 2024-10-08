@@ -4,6 +4,6 @@ namespace discipline.core.Communication;
 
 public interface INotificationWrapper
 {
-    Task Send(object message);
+    Task SendForAll(object message);
     bool CanByApplied(NotificationType type);
 }

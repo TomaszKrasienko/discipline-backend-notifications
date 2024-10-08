@@ -11,7 +11,7 @@ namespace discipline.core.unit_tests.Communication;
 public sealed class BroadcastingSystemNotificationWrapperTests
 {
     [Fact]
-    public async Task Send_GivenObject_ShouldSendSerializedMessageByHubService()
+    public async Task SendForAll_GivenObject_ShouldSendSerializedMessageByHubService()
     {
         //arrange
         var message = new { Test = "test" };
@@ -21,7 +21,7 @@ public sealed class BroadcastingSystemNotificationWrapperTests
             .Returns(serializedMessage);
 
         //act
-        await _notificationWrapper.Send(message);
+        await _notificationWrapper.SendForAll(message);
         
         //assert
         await _hubService

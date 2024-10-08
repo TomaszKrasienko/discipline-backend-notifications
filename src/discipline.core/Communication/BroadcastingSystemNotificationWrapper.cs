@@ -11,7 +11,7 @@ internal sealed class BroadcastingSystemNotificationWrapper(
 {
     private const NotificationType Type = NotificationType.System;
     
-    public async Task Send(object message)
+    public async Task SendForAll(object message)
     {
         var serializedMessage = serializer.ToJson(message);
         await hubService.PublishForAll(Type, serializedMessage);
