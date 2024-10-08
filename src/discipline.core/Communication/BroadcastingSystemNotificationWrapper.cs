@@ -17,9 +17,10 @@ internal sealed class BroadcastingSystemNotificationWrapper(
         await hubService.PublishForAll(Type, serializedMessage);
     }
 
-    public Task SendForUser(Guid userId, object message)
+    public async Task SendForUser(Guid userId, object message)
     {
-        throw new NotImplementedException();
+        var serializedMessage = serializer.ToJson(message);
+        await hubService.PublishForUser(Type, userId, serializedMessage);
     }
 
     public bool CanByApplied(NotificationType type)

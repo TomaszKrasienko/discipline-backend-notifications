@@ -2,3 +2,9 @@
 
 ###
 POST {{url}}/send-notification
+
+###
+POST {{url}}/send-notification/6f0a8031-25ff-4e34-8598-c247784a7e74
+
+###
+POST {{url}}/send-notification/b8ec8780-413d-4c1d-86ff-6984eaceac4c
