@@ -1,15 +1,19 @@
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 
 namespace discipline.core.Communication.SignalR;
 
+[Authorize]
 public sealed class NotificationHub
-    (ILogger<NotificationHub> logger): Hub
+    (ILogger<NotificationHub> logger) : Hub
 {
+    private readonly JwtSecurityTokenHandler _jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
+    
     public override Task OnConnectedAsync()
     {
-        var user = Context?.User?.Identity?.Name;
-        logger.LogInformation($"User {user} connected");
+        logger.LogInformation($"User {Context?.User?.Identity?.Name} connected");
         return base.OnConnectedAsync();
     }
 

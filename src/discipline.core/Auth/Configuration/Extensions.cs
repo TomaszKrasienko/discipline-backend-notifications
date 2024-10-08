@@ -5,6 +5,7 @@ using discipline.core.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -44,21 +45,35 @@ internal static class Extensions
                 {
                     OnMessageReceived = context =>
                     {
-                        var path = context.HttpContext.Request.Path;
-                        var headers = context.Request.Headers.TryGetValue("Authorization", out var accessToken);
-                        var signalROptions = configuration.GetOptions<Dictionary<string, SignalROptions>>(Communication.SignalR.Configuration.Extensions.SectionName);
-                        JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
-                        var result = handler.ValidateToken(accessToken.First(), validationParameters, out SecurityToken validatedToken);
-                        var token = handler.ReadJwtToken(accessToken.First());
-                        if (!string.IsNullOrEmpty(accessToken) && IsValidPath() && (result?.Identity?.IsAuthenticated ?? false))
+                        try
                         {
-                            context.Token = accessToken.First();
-                        }
-                        
-                        return Task.CompletedTask;
+                            var path = context.HttpContext.Request.Path;
 
-                        bool IsValidPath() => 
-                            signalROptions.Any(option => path.StartsWithSegments(option.Value.Route));
+                            if (!context.Request.Headers.TryGetValue("Authorization", out var accessToken))
+                            {
+                                Results.Unauthorized();
+                            }
+                            accessToken = accessToken.First().Replace("Bearer", "").Trim();
+                            
+                            bool IsValidPath()
+                            {
+                                var signalROptions = configuration.GetOptions<Dictionary<string, SignalROptions>>(
+                                        Communication.SignalR.Configuration.Extensions.SectionName);
+                                return signalROptions.Any(option 
+                                    => path.StartsWithSegments(option.Value.Route));
+                            }
+
+                            if (!string.IsNullOrEmpty(accessToken) && IsValidPath())
+                            {
+                                context.Token = accessToken;
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            Results.Unauthorized();
+                        }
+                        return Task.CompletedTask;
                     }
                 };
             });
