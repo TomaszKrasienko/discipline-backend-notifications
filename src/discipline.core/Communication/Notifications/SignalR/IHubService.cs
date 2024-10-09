@@ -1,4 +1,4 @@
-namespace discipline.core.Communication.SignalR;
+namespace discipline.core.Communication.Notifications.SignalR;
 
 public interface IHubService
 {

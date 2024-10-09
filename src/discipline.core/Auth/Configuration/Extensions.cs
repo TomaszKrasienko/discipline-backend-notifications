@@ -1,6 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Cryptography;
-using discipline.core.Communication.SignalR.Configuration;
+using discipline.core.Communication.Notifications.SignalR.Configuration;
 using discipline.core.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -58,7 +58,7 @@ internal static class Extensions
                             bool IsValidPath()
                             {
                                 var signalROptions = configuration.GetOptions<Dictionary<string, SignalROptions>>(
-                                        Communication.SignalR.Configuration.Extensions.SectionName);
+                                        Communication.Notifications.SignalR.Configuration.Extensions.SectionName);
                                 return signalROptions.Any(option 
                                     => path.StartsWithSegments(option.Value.Route));
                             }

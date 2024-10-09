@@ -1,12 +1,11 @@
-using discipline.core.Communication.SignalR.Registry;
-using discipline.core.Communication.SignalR.Types;
+using discipline.core.Communication.Notifications.SignalR.Registry;
+using discipline.core.Communication.Notifications.SignalR.Types;
 using discipline.core.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 
-namespace discipline.core.Communication.SignalR.Configuration;
+namespace discipline.core.Communication.Notifications.SignalR.Configuration;
 
 internal static class Extensions
 {

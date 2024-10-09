@@ -1,6 +1,6 @@
 using discipline.core.Auth.Configuration;
 using discipline.core.Communication.Configuration;
-using discipline.core.Communication.SignalR.Configuration;
+using discipline.core.Communication.Notifications.SignalR.Configuration;
 using discipline.core.Serializer.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;

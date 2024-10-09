@@ -1,8 +1,8 @@
-using discipline.core.Communication.SignalR;
-using discipline.core.Communication.SignalR.Registry;
+using discipline.core.Communication.Notifications.SignalR;
+using discipline.core.Communication.Notifications.SignalR.Registry;
 using discipline.core.Serializer;
 
-namespace discipline.core.Communication;
+namespace discipline.core.Communication.Notifications;
 
 internal sealed class BroadcastingSystemNotificationWrapper(
     IHubRegistry registry,

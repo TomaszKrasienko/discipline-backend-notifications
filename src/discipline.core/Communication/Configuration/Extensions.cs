@@ -1,4 +1,5 @@
-using discipline.core.Communication.SignalR.Configuration;
+using discipline.core.Communication.Notifications;
+using discipline.core.Communication.Notifications.SignalR.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -1,4 +1,4 @@
-namespace discipline.core.Communication.SignalR.Configuration;
+namespace discipline.core.Communication.Notifications.SignalR.Configuration;
 
 public sealed record SignalROptions
 {

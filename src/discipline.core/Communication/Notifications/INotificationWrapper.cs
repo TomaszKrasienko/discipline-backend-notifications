@@ -1,6 +1,4 @@
-using discipline.core.Communication.SignalR.Types;
-
-namespace discipline.core.Communication;
+namespace discipline.core.Communication.Notifications;
 
 public interface INotificationWrapper
 {

@@ -1,6 +1,6 @@
-using discipline.core.Communication.SignalR.Types;
+using discipline.core.Communication.Notifications.SignalR.Types;
 
-namespace discipline.core.Communication.SignalR.Registry;
+namespace discipline.core.Communication.Notifications.SignalR.Registry;
 
 internal sealed class HubRegistry : IHubRegistry
 {

@@ -1,8 +1,8 @@
-using discipline.core.Communication.SignalR.Registry;
+using discipline.core.Communication.Notifications.SignalR.Registry;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 
-namespace discipline.core.Communication.SignalR;
+namespace discipline.core.Communication.Notifications.SignalR;
 
 internal sealed class HubService(
     ILogger<HubService> logger,

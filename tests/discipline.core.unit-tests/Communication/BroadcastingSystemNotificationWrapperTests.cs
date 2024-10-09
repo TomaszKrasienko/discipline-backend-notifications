@@ -1,6 +1,7 @@
 using discipline.core.Communication;
-using discipline.core.Communication.SignalR;
-using discipline.core.Communication.SignalR.Registry;
+using discipline.core.Communication.Notifications;
+using discipline.core.Communication.Notifications.SignalR;
+using discipline.core.Communication.Notifications.SignalR.Registry;
 using discipline.core.Serializer;
 using NSubstitute;
 using Shouldly;

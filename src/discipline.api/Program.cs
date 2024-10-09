@@ -1,4 +1,5 @@
 using discipline.core.Communication;
+using discipline.core.Communication.Notifications;
 using discipline.core.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);

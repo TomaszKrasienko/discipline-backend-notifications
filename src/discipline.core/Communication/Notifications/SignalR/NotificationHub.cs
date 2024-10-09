@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 
-namespace discipline.core.Communication.SignalR;
+namespace discipline.core.Communication.Notifications.SignalR;
 
 [Authorize]
 public sealed class NotificationHub

@@ -1,3 +1,5 @@
+using discipline.core.Exceptions;
+
 namespace discipline.core.Entities;
 
 public sealed class UserAccount
@@ -10,5 +12,19 @@ public sealed class UserAccount
         => UserId = userId;
 
     public static UserAccount Create(Guid userId)
-        => new UserAccount(userId);
+    {
+        if (userId == Guid.Empty)
+        {
+            throw new EmptyUserIdException();
+        }
+        return new UserAccount(userId);
+    }
+
+    public Guid AddNotification(string title,
+        string content, DateTime createdAt)
+    {
+        var id = Guid.NewGuid();
+        _notifications.Add(new Notification(id, title, content, createdAt));
+        return id;
+    }
 }
