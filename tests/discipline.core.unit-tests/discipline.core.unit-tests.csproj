@@ -29,4 +29,8 @@
       <ProjectReference Include="..\..\src\discipline.core\discipline.core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Entities\" />
+    </ItemGroup>
+
 </Project>
