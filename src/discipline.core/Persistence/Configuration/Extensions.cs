@@ -1,3 +1,5 @@
+using discipline.core.Persistence.Abstractions;
+using discipline.core.Persistence.Internals;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -12,10 +14,16 @@ internal static class Extensions
     internal static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
         => services
             .AddOptions(configuration)
+            .AddServices()
             .AddConnection();
     
     private static IServiceCollection AddOptions(this IServiceCollection services, IConfiguration configuration)
         => services.Configure<MongoOptions>(configuration.GetSection(SectionName));
+    
+    private static IServiceCollection AddServices(this IServiceCollection services)
+        => services
+            .AddSingleton<IMongoCollectionNameConvention, MongoCollectionNameConvention>()
+            .AddTransient<IDisciplineMongoCollection, DisciplineMongoCollection>();
 
     private static IServiceCollection AddConnection(this IServiceCollection services)
     {

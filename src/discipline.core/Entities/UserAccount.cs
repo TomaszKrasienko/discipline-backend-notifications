@@ -8,6 +8,13 @@ public sealed class UserAccount
     public Guid UserId { get; }
     public IReadOnlyCollection<Notification> Notifications => _notifications;
 
+    //For mongo
+    internal UserAccount(Guid userId, List<Notification> notifications)
+    {
+        UserId = userId;
+        _notifications = notifications;
+    }
+
     private UserAccount(Guid userId)
         => UserId = userId;
 

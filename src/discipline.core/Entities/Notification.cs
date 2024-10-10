@@ -8,6 +8,16 @@ public sealed class Notification
     public DateTime CreatedAt { get; }
     public bool IsRead { get; private set; }
 
+    //For mongo
+    public Notification(Guid notificationId, string title, string content, DateTime createdAt, bool isRead)
+    {
+        NotificationId = notificationId;
+        Title = title;
+        Content = content;
+        CreatedAt = createdAt;
+        IsRead = isRead;
+    }
+
     internal Notification(Guid notificationId, string title,
         string content, DateTime createdAt)
     {
