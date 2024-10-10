@@ -27,6 +27,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\discipline.core\discipline.core.csproj" />
+      <ProjectReference Include="..\discipline.tests.shared\discipline.tests.shared.csproj" />
     </ItemGroup>
 
 </Project>

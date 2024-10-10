@@ -9,7 +9,7 @@ public sealed class Notification
     public bool IsRead { get; private set; }
 
     //For mongo
-    public Notification(Guid notificationId, string title, string content, DateTime createdAt, bool isRead)
+    internal Notification(Guid notificationId, string title, string content, DateTime createdAt, bool isRead)
     {
         NotificationId = notificationId;
         Title = title;
