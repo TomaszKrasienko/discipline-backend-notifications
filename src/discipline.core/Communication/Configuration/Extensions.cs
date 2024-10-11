@@ -1,3 +1,4 @@
+using discipline.core.Communication.MessageBroker.Configuration;
 using discipline.core.Communication.Notifications;
 using discipline.core.Communication.Notifications.SignalR.Configuration;
 using Microsoft.Extensions.Configuration;
@@ -10,5 +11,6 @@ internal static class Extensions
     internal static IServiceCollection AddCommunication(this IServiceCollection services, IConfiguration configuration)
         => services
             .AddBroadcasting(configuration)
+            .AddRedisMessageBroker(configuration)
             .AddScoped<INotificationWrapper, BroadcastingSystemNotificationWrapper>();
 }

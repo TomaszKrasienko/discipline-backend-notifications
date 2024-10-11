@@ -1,7 +1,9 @@
 using discipline.core.Auth.Configuration;
 using discipline.core.Communication.Configuration;
 using discipline.core.Communication.Notifications.SignalR.Configuration;
+using discipline.core.Persistence.Configuration;
 using discipline.core.Serializer.Configuration;
+using discipline.core.Services.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -17,7 +19,9 @@ public static class Extensions
             .AddCommunication(configuration)
             .AddAuth(configuration)
             .AddSerializer()
-            .AddDisciplineCors();
+            .AddDisciplineCors()
+            .AddPersistence(configuration)
+            .AddServices();
 
     private static IServiceCollection AddDisciplineCors(this IServiceCollection services)
     {

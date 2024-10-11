@@ -1,4 +1,4 @@
-namespace discipline.core.Communication.Events.Configuration;
+namespace discipline.core.Communication.MessageBroker.Configuration;
 
 public sealed record RedisOptions
 {

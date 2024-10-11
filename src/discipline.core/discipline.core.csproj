@@ -21,5 +21,14 @@
         <InternalsVisibleTo Include="discipline.tests.shared"/>
         <InternalsVisibleTo Include="DynamicProxyGenAssembly2"/>
     </ItemGroup>
+    <ItemGroup>
+      <Compile Remove="UserAccount\Repositories\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Remove="UserAccount\Repositories\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="UserAccount\Repositories\**" />
+    </ItemGroup>
 
 </Project>
