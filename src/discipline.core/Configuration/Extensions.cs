@@ -4,6 +4,7 @@ using discipline.core.Communication.Notifications.SignalR.Configuration;
 using discipline.core.Persistence.Configuration;
 using discipline.core.Serializer.Configuration;
 using discipline.core.Services.Configuration;
+using discipline.core.Time.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -21,7 +22,8 @@ public static class Extensions
             .AddSerializer()
             .AddDisciplineCors()
             .AddPersistence(configuration)
-            .AddServices();
+            .AddServices()
+            .AddTime();
 
     private static IServiceCollection AddDisciplineCors(this IServiceCollection services)
     {
