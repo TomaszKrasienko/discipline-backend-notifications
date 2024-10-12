@@ -20,4 +20,10 @@ internal static class UserAccountMapperExtensions
             CreatedAt = entity.CreatedAt,
             IsRead = entity.IsRead
         };
+
+    private static UserAccount AsEntity(this UserAccountDocument document)
+        => new UserAccount();
+
+    private static Notification AsEntity(this NotificationDocument document)
+        => new Notification();
 }

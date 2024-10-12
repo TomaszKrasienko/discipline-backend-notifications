@@ -20,4 +20,9 @@ internal sealed class MongoUserAccountRepository(
         => await _collection
             .Find(x => x.UserId == userId)
             .AnyAsync(cancellationToken);
+
+    public async Task<UserAccount> GetByIdAsync(Guid userId, CancellationToken cancellationToken)
+        => (await _collection
+            .Find(x => x.UserId == userId)
+            .FirstOrDefaultAsync(cancellationToken)).AsEntity();
 }

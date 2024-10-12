@@ -39,4 +39,7 @@ public sealed class UserAccountMapperExtensionsTests
         result.Notifications.First().IsRead.ShouldBe(userAccount.Notifications.First().IsRead);
         result.Notifications.Count().ShouldBe(userAccount.Notifications.Count);
     }
+
+    [Fact]
+    
 }
