@@ -22,7 +22,7 @@ internal static class UserAccountMapperExtensions
         };
 
     private static UserAccount AsEntity(this UserAccountDocument document)
-        => new UserAccount();
+        => new UserAccount(document.UserId, null);
 
     private static Notification AsEntity(this NotificationDocument document)
         => new Notification();

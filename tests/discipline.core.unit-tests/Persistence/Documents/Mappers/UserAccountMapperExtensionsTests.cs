@@ -1,4 +1,6 @@
+using discipline.core.Persistence.Documents;
 using discipline.core.Persistence.Documents.Mappers;
+using discipline.tests.shared.Documents;
 using discipline.tests.shared.Entities;
 using Shouldly;
 using Xunit;
@@ -41,5 +43,16 @@ public sealed class UserAccountMapperExtensionsTests
     }
 
     [Fact]
-    
+    public void AsEntity_GivenUserAccountWithoutNotifications_ShouldReturnUserAccount()
+    {
+        //arrange
+        var userAccountDocument = UserAccountDocumentFactory.Get();
+        var notifications = NotificationDocumentFactory.Get(1);
+        userAccountDocument.Notifications = notifications;
+        
+        //act
+        var result = userAccountDocument.AsEntity();
+        
+        //
+    }
 }
