@@ -20,7 +20,7 @@ public sealed class UserAccountMapperExtensionsTests
         
         //assert
         result.UserId.ShouldBe(userAccount.UserId);
-        result.Notifications.ShouldBeNull();
+        result.Notifications.ShouldBeEmpty();
     }
 
     [Fact]
@@ -47,12 +47,33 @@ public sealed class UserAccountMapperExtensionsTests
     {
         //arrange
         var userAccountDocument = UserAccountDocumentFactory.Get();
-        var notifications = NotificationDocumentFactory.Get(1);
-        userAccountDocument.Notifications = notifications;
         
         //act
         var result = userAccountDocument.AsEntity();
         
-        //
+        //assert
+        result.UserId.ShouldBe(userAccountDocument.UserId);
+        result.Notifications.ShouldBeEmpty();
+    }
+
+    [Fact]
+    public void AsEntity_GivenUserAccountWithNotifications_ShouldReturnUserAccountWithNotifications()
+    {
+        //arrange
+        var userAccountDocument = UserAccountDocumentFactory.Get();
+        var notificationDocuments = NotificationDocumentFactory.Get(5);
+        userAccountDocument.Notifications = notificationDocuments;
+        
+        //act
+        var result = userAccountDocument.AsEntity();
+        
+        //assert
+        result.UserId.ShouldBe(userAccountDocument.UserId);
+        result.Notifications.Count().ShouldBe(notificationDocuments.Count);
+        result.Notifications.First().NotificationId.ShouldBe(notificationDocuments[0].NotificationId);
+        result.Notifications.First().Title.ShouldBe(notificationDocuments[0].Title);
+        result.Notifications.First().Content.ShouldBe(notificationDocuments[0].Content);
+        result.Notifications.First().CreatedAt.ShouldBe(notificationDocuments[0].CreatedAt);
+        result.Notifications.First().IsRead.ShouldBe(notificationDocuments[0].IsRead);
     }
 }

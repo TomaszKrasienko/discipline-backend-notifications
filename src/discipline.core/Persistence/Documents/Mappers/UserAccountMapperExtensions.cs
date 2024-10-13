@@ -21,9 +21,9 @@ internal static class UserAccountMapperExtensions
             IsRead = entity.IsRead
         };
 
-    private static UserAccount AsEntity(this UserAccountDocument document)
-        => new UserAccount(document.UserId, null);
+    internal static UserAccount AsEntity(this UserAccountDocument document)
+        => new UserAccount(document.UserId, document.Notifications?.Select(x => x.AsEntity()).ToList());
 
     private static Notification AsEntity(this NotificationDocument document)
-        => new Notification();
+        => new Notification(document.NotificationId, document.Title, document.Content, document.CreatedAt, document.IsRead);
 }

@@ -4,7 +4,7 @@ namespace discipline.core.Entities;
 
 public sealed class UserAccount
 {
-    private List<Notification> _notifications = new List<Notification>();
+    private readonly List<Notification> _notifications = [];
     public Guid UserId { get; }
     public IReadOnlyCollection<Notification> Notifications => _notifications;
 
@@ -12,7 +12,7 @@ public sealed class UserAccount
     internal UserAccount(Guid userId, List<Notification> notifications)
     {
         UserId = userId;
-        _notifications = notifications;
+        _notifications = notifications ?? [];
     }
 
     private UserAccount(Guid userId)
