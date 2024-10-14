@@ -18,7 +18,7 @@ public sealed class NotificationsServiceTests
     public async Task SendSystemNotification_GivenNotExistingUser_ShouldNotSendAnyNotification()
     {
         //arrange
-        var command = new NewSystemNotification(Guid.NewGuid(), "test_context");
+        var command = new NewSystemNotificationCommand(Guid.NewGuid(), "test_context");
 
         _userAccountRepository
             .GetByIdAsync(command.UserId, default)

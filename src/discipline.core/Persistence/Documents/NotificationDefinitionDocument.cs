@@ -10,11 +10,11 @@ public sealed class NotificationDefinitionDocument : IDocument
     public Guid Id { get; set; }
     
     [BsonElement("context")]
-    public string? Context { get; set; }
+    public string Context { get; set; }
     
     [BsonElement("title")]
-    public string? Title { get; set; }
+    public string Title { get; set; }
     
     [BsonElement("content")]
-    public string? Content { get; set; }
+    public string Content { get; set; }
 }

@@ -13,13 +13,13 @@ internal sealed class NotificationsService(
     IClock clock,
     INotificationWrapper notificationWrapper) : INotificationsService
 {
-    public async Task SendSystemNotification(NewSystemNotification newNotification, CancellationToken cancellationToken)
+    public async Task SendSystemNotification(NewSystemNotificationCommand command, CancellationToken cancellationToken)
     {
         var userAccount = await userAccountRepository
-            .GetByIdAsync(newNotification.UserId, cancellationToken);
+            .GetByIdAsync(command.UserId, cancellationToken);
         if (userAccount is null)
         {
-            logger.LogWarning("User account with ID: {0} not found", newNotification.UserId);
+            logger.LogWarning("User account with ID: {0} not found", command.UserId);
             return;
         }
         

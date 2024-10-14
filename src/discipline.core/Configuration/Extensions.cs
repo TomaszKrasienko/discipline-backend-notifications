@@ -1,6 +1,7 @@
 using discipline.core.Auth.Configuration;
 using discipline.core.Communication.Configuration;
 using discipline.core.Communication.Notifications.SignalR.Configuration;
+using discipline.core.Initialization.Configuration;
 using discipline.core.Persistence.Configuration;
 using discipline.core.Serializer.Configuration;
 using discipline.core.Services.Configuration;
@@ -23,7 +24,8 @@ public static class Extensions
             .AddDisciplineCors()
             .AddPersistence(configuration)
             .AddServices()
-            .AddTime();
+            .AddTime()
+            .AddInitialization(configuration);
 
     private static IServiceCollection AddDisciplineCors(this IServiceCollection services)
     {
