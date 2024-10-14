@@ -1,3 +1,4 @@
+using discipline.core.Domain.NotificationDefinitions.Exceptions;
 using discipline.core.Domain.NotificationDefinitions.ValueObjects;
 using discipline.core.Domain.SharedKernel.Types;
 
@@ -39,4 +40,18 @@ public sealed class NotificationDefinition
 
     private void ChangeContent(string value)
         => Content = new Content(value);
+
+    internal string FillContent(List<string> parameters)
+    {
+        if (parameters is null || parameters.Count == 0)
+        {
+            return Content.Value;
+        }
+
+        if (parameters.Count != Content.ParamCount)
+        {
+            throw new InvalidNumberOfParametersException(parameters.Count, Content.ParamCount);
+        }
+        return string.Format(Content.Value, parameters.ToArray<object>());
+    }
 }

@@ -30,4 +30,8 @@
       <ProjectReference Include="..\discipline.tests.shared\discipline.tests.shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Domain\UserAccounts\" />
+    </ItemGroup>
+
 </Project>

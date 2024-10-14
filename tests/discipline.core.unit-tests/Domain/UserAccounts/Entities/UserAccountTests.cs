@@ -3,7 +3,7 @@ using discipline.core.Exceptions;
 using Shouldly;
 using Xunit;
 
-namespace discipline.core.unit_tests.Domain.Entities;
+namespace discipline.core.unit_tests.Domain.UserAccounts.Entities;
 
 public sealed class UserAccountTests
 {
