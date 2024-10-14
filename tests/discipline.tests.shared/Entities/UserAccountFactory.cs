@@ -1,5 +1,5 @@
 using Bogus;
-using discipline.core.Entities;
+using discipline.core.Domain.UserAccounts.Entities;
 
 namespace discipline.tests.shared.Entities;
 

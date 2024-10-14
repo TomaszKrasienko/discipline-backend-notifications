@@ -1,4 +1,4 @@
-namespace discipline.core.Entities;
+namespace discipline.core.Domain.UserAccounts.Entities;
 
 public sealed class Notification
 {

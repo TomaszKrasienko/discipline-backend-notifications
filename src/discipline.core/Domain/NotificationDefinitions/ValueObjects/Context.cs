@@ -1,7 +1,7 @@
-using discipline.core.Domain.NotificationsStorage.Exceptions;
+using discipline.core.Domain.NotificationDefinitions.Exceptions;
 using discipline.core.Domain.SharedKernel;
 
-namespace discipline.core.Domain.NotificationsStorage.ValueObjects;
+namespace discipline.core.Domain.NotificationDefinitions.ValueObjects;
 
 public sealed class Context : ValueObject
 {

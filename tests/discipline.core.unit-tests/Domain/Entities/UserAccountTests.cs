@@ -1,4 +1,4 @@
-using discipline.core.Entities;
+using discipline.core.Domain.UserAccounts.Entities;
 using discipline.core.Exceptions;
 using Shouldly;
 using Xunit;

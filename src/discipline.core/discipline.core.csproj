@@ -31,5 +31,8 @@
     <ItemGroup>
       <None Remove="UserAccount\Repositories\**" />
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Domain\UserAccounts\" />
+    </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-using discipline.core.Entities;
+using discipline.core.Domain.UserAccounts.Entities;
 using discipline.core.Persistence.Repositories.Abstractions;
 using discipline.core.Services.Abstractions;
 using discipline.core.Services.Commands;
