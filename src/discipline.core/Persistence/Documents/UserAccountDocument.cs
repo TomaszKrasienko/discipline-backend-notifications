@@ -10,5 +10,5 @@ public sealed class UserAccountDocument : IDocument
     public Guid UserId { get; set; }
 
     [BsonElement("notifications")]
-    public IEnumerable<NotificationDocument> Notifications { get; set; }
+    public IEnumerable<NotificationDocument>? Notifications { get; set; }
 }
