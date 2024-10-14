@@ -20,4 +20,9 @@ internal sealed class MongoNotificationDefinitionRepository(
         => await _collection
             .Find(x => x.Context == context)
             .AnyAsync(cancellationToken);
+
+    public async Task<NotificationDefinition> GetByIdAsync(string context, CancellationToken cancellationToken)
+        => (await _collection
+            .Find(x => x.Context == context)
+            .FirstOrDefaultAsync(cancellationToken))?.AsEntity();
 }

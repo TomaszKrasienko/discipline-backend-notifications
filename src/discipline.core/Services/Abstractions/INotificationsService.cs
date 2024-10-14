@@ -4,5 +4,5 @@ namespace discipline.core.Services.Abstractions;
 
 public interface INotificationsService
 {
-    Task SendSystemNotification(NewSystemNotificationCommand command, CancellationToken cancellationToken);
+    Task SendNotification(NewNotificationCommand command, CancellationToken cancellationToken);
 }
