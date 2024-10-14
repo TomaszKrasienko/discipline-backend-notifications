@@ -6,9 +6,9 @@ namespace discipline.core.Domain.NotificationDefinitions.Entities;
 public sealed class NotificationDefinition
 {
     public EntityId Id { get; set; }
-    public Context? Context { get; private set; }
-    public Title? Title { get; private set; }
-    public Content? Content { get; private set; }
+    public Context Context { get; private set; }
+    public Title Title { get; private set; }
+    public Content Content { get; private set; }
 
     //For mongo
     internal NotificationDefinition(Guid id, string context, string title, string content)
