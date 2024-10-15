@@ -16,6 +16,10 @@ internal sealed class MongoUserAccountRepository(
     public async Task AddAsync(UserAccount userAccount, CancellationToken cancellationToken)
         => await _collection.InsertOneAsync(userAccount.AsDocument(), null, cancellationToken);
 
+    public async Task UpdateAsync(UserAccount userAccount, CancellationToken cancellationToken)
+        => await _collection.FindOneAndReplaceAsync(x => x.UserId == userAccount.UserId, 
+            userAccount.AsDocument(), null, cancellationToken);
+
     public async Task<bool> IsExistsAsync(Guid userId, CancellationToken cancellationToken)
         => await _collection
             .Find(x => x.UserId == userId)
