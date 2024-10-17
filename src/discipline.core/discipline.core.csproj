@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+        <PackageReference Include="MongoDB.Driver" Version="2.26.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.2" />
+        <PackageReference Include="StackExchange.Redis" Version="2.8.16" />
+    </ItemGroup>
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+    <ItemGroup>
+        <InternalsVisibleTo Include="discipline.core.unit-tests"/>
+        <InternalsVisibleTo Include="discipline.tests.shared"/>
+        <InternalsVisibleTo Include="DynamicProxyGenAssembly2"/>
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Remove="UserAccount\Repositories\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Remove="UserAccount\Repositories\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="UserAccount\Repositories\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Domain\UserAccounts\" />
+    </ItemGroup>
+
+</Project>
